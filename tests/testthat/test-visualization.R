@@ -30,7 +30,7 @@ test_that("draw_idr_distribution_histogram", {
                                   idr2d:::chipseq$rep2_df,
                                   value_transformation = "log")
     p <- draw_idr_distribution_histogram(idr_results$rep1_df)
-    expect_equal(class(p), c("gg", "ggplot"))
+    expect_contains(class(p), c("gg", "ggplot"))
 })
 
 test_that("draw_rank_idr_scatterplot", {
@@ -38,10 +38,10 @@ test_that("draw_rank_idr_scatterplot", {
                                   idr2d:::chipseq$rep2_df,
                                   value_transformation = "log")
     p <- draw_rank_idr_scatterplot(idr_results$rep1_df)
-    expect_equal(class(p), c("gg", "ggplot"))
+    expect_contains(class(p), c("gg", "ggplot"))
     p <- draw_rank_idr_scatterplot(idr_results$rep1_df, log_idr = TRUE,
                                    max_points_shown = 250)
-    expect_equal(class(p), c("gg", "ggplot"))
+    expect_contains(class(p), c("gg", "ggplot"))
 })
 
 test_that("draw_value_idr_scatterplot", {
@@ -49,12 +49,12 @@ test_that("draw_value_idr_scatterplot", {
                                   idr2d:::chipseq$rep2_df,
                                   value_transformation = "log")
     p <- draw_value_idr_scatterplot(idr_results$rep1_df)
-    expect_equal(class(p), c("gg", "ggplot"))
+    expect_contains(class(p), c("gg", "ggplot"))
     p <- draw_value_idr_scatterplot(idr_results$rep1_df, log_axes = TRUE)
-    expect_equal(class(p), c("gg", "ggplot"))
+    expect_contains(class(p), c("gg", "ggplot"))
     p <- draw_value_idr_scatterplot(idr_results$rep1_df, log_idr = TRUE,
                                     max_points_shown = 250)
-    expect_equal(class(p), c("gg", "ggplot"))
+    expect_contains(class(p), c("gg", "ggplot"))
 })
 
 test_that("draw_hic_contact_map", {
@@ -63,7 +63,7 @@ test_that("draw_hic_contact_map", {
                                          idr2d:::hic$rep2_df)
     p <- draw_hic_contact_map(idr_results_df, idr_cutoff = 0.05,
                               chromosome = "chr1")
-    expect_equal(class(p), c("gg", "ggplot"))
+    expect_contains(class(p), c("gg", "ggplot"))
 
     expect_error(draw_hic_contact_map(idr_results_df, idr_cutoff = 0.00000005,
                                       chromosome = "chr1"),
@@ -78,7 +78,7 @@ test_that("draw_hic_contact_map", {
                                       chromosome = "chrWRONG"))
     p <- draw_hic_contact_map(idr_results_df, idr_cutoff = 0.05,
                               chromosome = "chr1", log_values = FALSE)
-    expect_equal(class(p), c("gg", "ggplot"))
+    expect_contains(class(p), c("gg", "ggplot"))
 
 
     rep1_df <- idr2d:::hic$rep1_df
@@ -88,7 +88,7 @@ test_that("draw_hic_contact_map", {
     idr_results_df <- estimate_idr2d_hic(rep1_df,
                                          rep2_df)
     p <- draw_hic_contact_map(idr_results_df, idr_cutoff = 0.05)
-    expect_equal(class(p), c("gg", "ggplot"))
+    expect_contains(class(p), c("gg", "ggplot"))
 
     idr_results_df$value[1:100] <- idr_results_df$value[1:100] * (-1)
     idr_results_df$interaction <- as.factor(idr_results_df$interaction)
