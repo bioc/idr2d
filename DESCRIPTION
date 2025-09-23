@@ -50,5 +50,5 @@ VignetteBuilder:
 biocViews: DNA3DStructure, GeneRegulation, PeakDetection, Epigenetics,
     FunctionalGenomics, Classification, HiC
 Encoding: UTF-8
-RoxygenNote: 7.1.0
+RoxygenNote: 7.3.3
 SystemRequirements: Python (>= 3.5.0), hic-straw

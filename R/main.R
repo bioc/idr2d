@@ -171,6 +171,7 @@ establish_bijection2d <- function(rep1_df, rep2_df,
 #' @importFrom dplyr group_by
 #' @importFrom dplyr slice
 #' @importFrom dplyr select
+#' @importFrom dplyr all_of
 #' @importFrom futile.logger flog.warn
 #' @importFrom magrittr "%>%"
 #' @export
@@ -259,8 +260,8 @@ establish_bijection <- function(rep1_df, rep2_df,
             rep1_df$value[top_pairs_df$rep1_idx]
 
         columns <- c(columns, "rep_value", "rank", "rep_rank", "idx", "rep_idx")
-        rep1_df <- dplyr::select(rep1_df, columns)
-        rep2_df <- dplyr::select(rep2_df, columns)
+        rep1_df <- dplyr::select(rep1_df, dplyr::all_of(columns))
+        rep2_df <- dplyr::select(rep2_df, dplyr::all_of(columns))
     } else {
         if (nrow(rep1_df) == 0) {
             rep1_df$idx <- integer(0)
@@ -281,7 +282,7 @@ establish_bijection <- function(rep1_df, rep2_df,
             rep1_df$rep_rank <- NA_integer_
             rep1_df$rep_value <- NA_real_
 
-            rep1_df <- dplyr::select(rep1_df, columns)
+            rep1_df <- dplyr::select(rep1_df, dplyr::all_of(columns))
         }
         if (nrow(rep2_df) == 0) {
             rep2_df$idx <- integer(0)
@@ -302,7 +303,7 @@ establish_bijection <- function(rep1_df, rep2_df,
             rep2_df$rep_rank <- NA_integer_
             rep2_df$rep_value <- NA_real_
 
-            rep2_df <- dplyr::select(rep2_df, columns)
+            rep2_df <- dplyr::select(rep2_df, dplyr::all_of(columns))
         }
     }
 
@@ -627,6 +628,7 @@ estimate_idr2d <- function(rep1_df, rep2_df,
 #' @importFrom dplyr arrange
 #' @importFrom dplyr select
 #' @importFrom dplyr filter
+#' @importFrom dplyr all_of
 #' @importFrom futile.logger flog.warn
 #' @importFrom stringr str_trim
 #' @importFrom idr est.IDR
@@ -766,11 +768,11 @@ estimate_idr <- function(rep1_df, rep2_df, analysis_type = "IDR2D",
         columns <- c(columns, "rep_value", "rank", "rep_rank",
                      "idx", "rep_idx", "idr")
         if (analysis_type == "IDR1D") {
-            rep1_df <- dplyr::select(rep1_df, columns)
-            rep2_df <- dplyr::select(rep2_df, columns)
+            rep1_df <- dplyr::select(rep1_df, dplyr::all_of(columns))
+            rep2_df <- dplyr::select(rep2_df, dplyr::all_of(columns))
         } else if (analysis_type == "IDR2D") {
-            rep1_df <- dplyr::select(rep1_df, columns)
-            rep2_df <- dplyr::select(rep2_df, columns)
+            rep1_df <- dplyr::select(rep1_df, dplyr::all_of(columns))
+            rep2_df <- dplyr::select(rep2_df, dplyr::all_of(columns))
         }
     } else {
         if (nrow(rep1_df) == 0) {
@@ -794,7 +796,7 @@ estimate_idr <- function(rep1_df, rep2_df, analysis_type = "IDR2D",
             rep1_df$rep_value <- NA_real_
             rep1_df$idr <- NA_real_
 
-            rep1_df <- dplyr::select(rep1_df, columns)
+            rep1_df <- dplyr::select(rep1_df, dplyr::all_of(columns))
         }
         if (nrow(rep2_df) == 0) {
             rep2_df$idx <- integer(0)
@@ -817,7 +819,7 @@ estimate_idr <- function(rep1_df, rep2_df, analysis_type = "IDR2D",
             rep2_df$rep_value <- NA_real_
             rep2_df$idr <- NA_real_
 
-            rep2_df <- dplyr::select(rep2_df, columns)
+            rep2_df <- dplyr::select(rep2_df, dplyr::all_of(columns))
         }
     }
 
